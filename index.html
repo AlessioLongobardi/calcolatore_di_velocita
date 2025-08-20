@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Calcolatore di velocità</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            background: url('img/auto.gif') no-repeat center center fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-3">
+        <h1 class=" mb-4">Calcolatore Di Velocità</h1>
+
+        <div class="card shadow p-3 col-md-6 ">
+            <h5 class="mb-3">Inserisci i dati</h5>
+
+            <div class="row g-2">
+
+
+                <div class="col-md-4">
+                    <input type="number" class="form-control" id="chilometri" placeholder="Inserisci Km" required /> <br />
+
+                    <input type="number" class="form-control" id="ora" placeholder="Inserisci Ora" required /> <br />
+
+                    <input type="number" class="form-control" id="minuti" placeholder="Inserisci Minuti" required />
+                </div>
+
+            </div>
+           
+
+
+
+            <div class="text-left mt-4">
+                <button class="btn btn-primary me-2" onclick="calcolaMedia()">Calcola</button>
+            </div>
+
+            <!-- risultato del calcolo-->
+            <div class="mt-4  fw-bold" id="risultato"></div>
+
+        </div>
+       
+    </div>
+
+
+    <!--Javascript-->
+
+    <script>
+
+        function calcolaMedia() {
+            var chilometri = parseFloat(document.getElementById("chilometri").value);
+            var ora = parseFloat(document.getElementById("ora").value);
+            var minuti = parseFloat(document.getElementById("minuti").value);
+
+            var tempoTotale = ora + (minuti / 60);
+            var velocitaMedia = chilometri / tempoTotale;
+
+            var colore = "";
+            var messaggio = "";
+
+            if (velocitaMedia < 50) {
+                colore = "blue";
+                messaggio = "Andatura lenta";
+            } else if (velocitaMedia >= 50 && velocitaMedia <= 100) {
+                colore = "green";
+                messaggio = "Andatura normale";
+            } else {
+                colore = "red";
+                messaggio = "Andatura veloce";
+            }
+
+            document.getElementById("risultato").innerHTML =
+                `Velocità Media: ${velocitaMedia.toFixed(2)}Km/h <br> ${messaggio}`;
+            document.getElementById("risultato").style.color = colore;
+
+        }
+
+    </script>
+</body>
+</html>
